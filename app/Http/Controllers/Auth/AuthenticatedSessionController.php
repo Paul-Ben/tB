@@ -29,7 +29,21 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = Auth::user();
+        $user->syncUserRole(); // Sync userRole with Spatie role
+        
+        // Redirect based on user role
+        $role = $user->getPrimaryRole();
+        
+        $redirectUrl = match ($role) {
+            'admin' => route('admin.dashboard'),
+            'manager' => route('manager.dashboard'),
+            'teacher' => route('teacher.dashboard'),
+            'guardian' => route('guardian.dashboard'),
+            default => RouteServiceProvider::HOME
+        };
+
+        return redirect()->intended($redirectUrl);
     }
 
     /**
