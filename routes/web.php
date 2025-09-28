@@ -85,6 +85,23 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
     Route::get('/manager/dashboard', [App\Http\Controllers\ManagerDashboardController::class, 'index'])
         ->name('manager.dashboard');
+    
+    // School Session Management Routes
+    Route::resource('manager/school-sessions', App\Http\Controllers\ManagerSchoolSessionController::class, [
+        'names' => [
+            'index' => 'manager.school-sessions.index',
+            'create' => 'manager.school-sessions.create',
+            'store' => 'manager.school-sessions.store',
+            'show' => 'manager.school-sessions.show',
+            'edit' => 'manager.school-sessions.edit',
+            'update' => 'manager.school-sessions.update',
+            'destroy' => 'manager.school-sessions.destroy',
+        ]
+    ]);
+    
+    // Additional school session routes
+    Route::post('/manager/school-sessions/{schoolSession}/toggle-status', [App\Http\Controllers\ManagerSchoolSessionController::class, 'toggleStatus'])
+        ->name('manager.school-sessions.toggle-status');
 });
 
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
