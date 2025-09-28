@@ -1,127 +1,189 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Manager Dashboard') }}
-        </h2>
-    </x-slot>
+<x-dashboard-layout>
+    <x-slot name="title">Manager Dashboard</x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Manager Overview</h4>
+
             <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                                </svg>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/chart-success.png') }}" alt="Teachers" class="rounded">
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" href="javascript:void(0);">View All Teachers</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Add Teacher</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500">Teachers</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $teacherCount }}</p>
-                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Teachers</span>
+                            <h3 class="card-title mb-2">{{ $teacherCount }}</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> Active teachers</small>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
+                
+                <div class="col-lg-6 col-md-6 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/wallet-info.png') }}" alt="Guardians" class="rounded">
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
+                                        <a class="dropdown-item" href="javascript:void(0);">View All Guardians</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Send Communication</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500">Guardians</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $guardianCount }}</p>
-                            </div>
+                            <span class="fw-semibold d-block mb-1">Total Guardians</span>
+                            <h3 class="card-title mb-2">{{ $guardianCount }}</h3>
+                            <small class="text-info fw-semibold"><i class="bx bx-user"></i> Registered guardians</small>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">Manage Teachers</h4>
-                                <p class="text-sm text-gray-500">Add, edit, or remove teachers</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-primary">
+                                    <i class="bx bx-user-check bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">Manage Teachers</h5>
+                            <p class="card-text">Add, edit, or remove teachers from the system</p>
+                            <a href="#" class="btn btn-primary">Manage Teachers</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">Manage Classes</h4>
-                                <p class="text-sm text-gray-500">Organize classes and assignments</p>
+                
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-success">
+                                    <i class="bx bx-book-open bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">Manage Classes</h5>
+                            <p class="card-text">Organize classes and assignments</p>
+                            <a href="#" class="btn btn-success">Manage Classes</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">View Reports</h4>
-                                <p class="text-sm text-gray-500">Generate and view reports</p>
+                
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-info">
+                                    <i class="bx bx-bar-chart-alt-2 bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">View Reports</h5>
+                            <p class="card-text">Generate and view detailed reports</p>
+                            <a href="#" class="btn btn-info">View Reports</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Recent Activity -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Users</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Joined</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach($recentUsers as $user)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $user->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-                                            @if($user->userRole === 'teacher') bg-green-100 text-green-800 
-                                            @elseif($user->userRole === 'guardian') bg-blue-100 text-blue-800 
-                                            @else bg-gray-100 text-gray-800 @endif">
-                                            {{ $user->userRole ?? $user->getPrimaryRole() ?? 'No Role' }}
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->created_at->format('M j, Y') }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+            <!-- Recent Users -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="card-title m-0">Recent Users</h5>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="recentUsersDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="recentUsersDropdown">
+                                    <a class="dropdown-item" href="javascript:void(0);">View All</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Export</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>User</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Joined</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                        @foreach($recentUsers as $user)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar avatar-sm me-3">
+                                                        <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar" class="rounded-circle">
+                                                    </div>
+                                                    <div>
+                                                        <strong>{{ $user->name }}</strong>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                @php
+                                                    $role = $user->userRole ?? $user->getPrimaryRole() ?? 'No Role';
+                                                    $badgeClass = match($role) {
+                                                        'teacher' => 'bg-label-success',
+                                                        'guardian' => 'bg-label-info',
+                                                        'admin' => 'bg-label-primary',
+                                                        'manager' => 'bg-label-warning',
+                                                        default => 'bg-label-secondary'
+                                                    };
+                                                @endphp
+                                                <span class="badge {{ $badgeClass }} me-1">{{ $role }}</span>
+                                            </td>
+                                            <td>{{ $user->created_at->format('M j, Y') }}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-show-alt me-1"></i> View</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- / Content -->
     </div>
-</x-app-layout>
+    <!-- Content wrapper -->
+</x-dashboard-layout>
