@@ -21,8 +21,8 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
-                                        <a class="dropdown-item" href="javascript:void(0);">View All Teachers</a>
-                                        <a class="dropdown-item" href="javascript:void(0);">Add Teacher</a>
+                                        <a class="dropdown-item" href="{{ route('manager.teachers.index') }}">View All Teachers</a>
+                                        <a class="dropdown-item" href="{{ route('manager.teachers.create') }}">Add Teacher</a>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                             </div>
                             <h5 class="card-title">Manage Teachers</h5>
                             <p class="card-text">Add, edit, or remove teachers from the system</p>
-                            <a href="#" class="btn btn-primary">Manage Teachers</a>
+                            <a href="{{ route('manager.teachers.index') }}" class="btn btn-primary">Manage Teachers</a>
                         </div>
                     </div>
                 </div>
