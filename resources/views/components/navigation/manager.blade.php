@@ -18,12 +18,12 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('manager.teachers.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.teachers.index') }}" class="menu-link">
                     <div data-i18n="All Teachers">All Teachers</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->routeIs('manager.teachers.create') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.teachers.create') }}" class="menu-link">
                     <div data-i18n="Add Teacher">Add Teacher</div>
                 </a>
             </li>
