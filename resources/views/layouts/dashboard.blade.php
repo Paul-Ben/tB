@@ -62,7 +62,7 @@
                 
                 <!-- Navigation Menu -->
                 @php
-                    $userType = auth()->user()->role ?? 'admin'; // Default to admin if no role
+                    $userType = auth()->user()->getPrimaryRole() ?? 'admin'; // Default to admin if no role
                 @endphp
                 
                 @if($userType === 'admin')
@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                                                    <small class="text-muted">{{ ucfirst(Auth::user()->user_role ?? 'User') }}</small>
+                                                    <small class="text-muted">{{ ucfirst(Auth::user()->getPrimaryRole() ?? 'User') }}</small>
                                                 </div>
                                             </div>
                                         </a>
