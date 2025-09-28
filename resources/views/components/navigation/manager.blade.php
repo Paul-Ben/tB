@@ -18,12 +18,12 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('manager.teachers.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.teachers.index') }}" class="menu-link">
                     <div data-i18n="All Teachers">All Teachers</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->routeIs('manager.teachers.create') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.teachers.create') }}" class="menu-link">
                     <div data-i18n="Add Teacher">Add Teacher</div>
                 </a>
             </li>
@@ -79,6 +79,27 @@
     <li class="menu-header small text-uppercase">
         <span class="menu-header-text">Academic</span>
     </li>
+    
+    <!-- School Sessions -->
+    <li class="menu-item {{ request()->routeIs('manager.school-sessions*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-calendar-event"></i>
+            <div data-i18n="School Sessions">School Sessions</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('manager.school-sessions.index') ? 'active' : '' }}">
+                <a href="{{ route('manager.school-sessions.index') }}" class="menu-link">
+                    <div data-i18n="All Sessions">All Sessions</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('manager.school-sessions.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.school-sessions.create') }}" class="menu-link">
+                    <div data-i18n="Create Session">Create Session</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <li class="menu-item {{ request()->routeIs('manager.classes*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-book-open"></i>

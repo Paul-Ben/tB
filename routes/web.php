@@ -85,6 +85,44 @@ Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
     Route::get('/manager/dashboard', [App\Http\Controllers\ManagerDashboardController::class, 'index'])
         ->name('manager.dashboard');
+    
+    // School Session Management Routes
+    Route::resource('manager/school-sessions', App\Http\Controllers\ManagerSchoolSessionController::class, [
+        'names' => [
+            'index' => 'manager.school-sessions.index',
+            'create' => 'manager.school-sessions.create',
+            'store' => 'manager.school-sessions.store',
+            'show' => 'manager.school-sessions.show',
+            'edit' => 'manager.school-sessions.edit',
+            'update' => 'manager.school-sessions.update',
+            'destroy' => 'manager.school-sessions.destroy',
+        ]
+    ]);
+    
+    // Additional school session routes
+    Route::post('/manager/school-sessions/{schoolSession}/toggle-status', [App\Http\Controllers\ManagerSchoolSessionController::class, 'toggleStatus'])
+        ->name('manager.school-sessions.toggle-status');
+    
+    // Teacher Management Routes
+    Route::resource('manager/teachers', App\Http\Controllers\ManagerTeacherController::class, [
+        'names' => [
+            'index' => 'manager.teachers.index',
+            'create' => 'manager.teachers.create',
+            'store' => 'manager.teachers.store',
+            'show' => 'manager.teachers.show',
+            'edit' => 'manager.teachers.edit',
+            'update' => 'manager.teachers.update',
+            'destroy' => 'manager.teachers.destroy',
+        ]
+    ]);
+    
+    // Additional teacher management routes
+    Route::post('/manager/teachers/{teacher}/toggle-verification', [App\Http\Controllers\ManagerTeacherController::class, 'toggleVerification'])
+        ->name('manager.teachers.toggle-verification');
+    Route::post('/manager/teachers/bulk-action', [App\Http\Controllers\ManagerTeacherController::class, 'bulkAction'])
+        ->name('manager.teachers.bulk-action');
+    Route::post('/manager/teachers/{teacher}/resend-welcome-email', [App\Http\Controllers\ManagerTeacherController::class, 'resendWelcomeEmail'])
+        ->name('manager.teachers.resend-welcome-email');
 });
 
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
