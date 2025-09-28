@@ -1,151 +1,202 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Guardian Dashboard') }}
-        </h2>
-    </x-slot>
+<x-dashboard-layout>
+    <x-slot name="title">Guardian Dashboard</x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <!-- Content wrapper -->
+    <div class="content-wrapper">
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Dashboard /</span> Guardian Overview</h4>
+
             <!-- Welcome Banner -->
-            <div class="bg-gradient-to-r from-green-500 to-blue-600 rounded-lg shadow-lg mb-6">
-                <div class="px-6 py-4 sm:px-6 sm:py-6">
-                    <h3 class="text-xl font-semibold text-white">Welcome, {{ $user->name }}!</h3>
-                    <p class="text-green-100 mt-1">Stay connected with your child's education journey.</p>
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="avatar me-3">
+                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Avatar" class="rounded-circle">
+                                </div>
+                                <div>
+                                    <h5 class="card-title text-white mb-1">Welcome, {{ $user->name }}!</h5>
+                                    <p class="card-text text-white opacity-75 mb-0">Stay connected with your child's education journey.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Statistics Cards -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                </svg>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/chart-success.png') }}" alt="Children" class="rounded">
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                        <a class="dropdown-item" href="javascript:void(0);">View All Children</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Child Profiles</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500">My Children</p>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $childrenCount }}</p>
+                            <span class="fw-semibold d-block mb-1">My Children</span>
+                            <h3 class="card-title mb-2">{{ $childrenCount }}</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-user"></i> Enrolled children</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/wallet-info.png') }}" alt="Tasks" class="rounded">
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
+                                        <a class="dropdown-item" href="javascript:void(0);">View All Tasks</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Mark Complete</a>
+                                    </div>
+                                </div>
                             </div>
+                            <span class="fw-semibold d-block mb-1">Pending Tasks</span>
+                            <h3 class="card-title mb-2">3</h3>
+                            <small class="text-warning fw-semibold"><i class="bx bx-time"></i> Requires attention</small>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
+                <div class="col-lg-4 col-md-4 col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title d-flex align-items-start justify-content-between">
+                                <div class="avatar flex-shrink-0">
+                                    <img src="{{ asset('assets/img/icons/unicons/paypal.png') }}" alt="Grades" class="rounded">
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                        <a class="dropdown-item" href="javascript:void(0);">View Grade Report</a>
+                                        <a class="dropdown-item" href="javascript:void(0);">Grade History</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500">Pending Tasks</p>
-                                <p class="text-2xl font-semibold text-gray-900">3</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <div class="flex-shrink-0">
-                                <svg class="h-8 w-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm font-medium text-gray-500">This Week's Grades</p>
-                                <p class="text-2xl font-semibold text-green-600">A-</p>
-                            </div>
+                            <span class="fw-semibold d-block mb-1">This Week's Grades</span>
+                            <h3 class="card-title mb-2 text-success">A-</h3>
+                            <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> Excellent performance</small>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Actions -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">View Grades</h4>
-                                <p class="text-sm text-gray-500">Check your child's academic progress</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-primary">
+                                    <i class="bx bx-bar-chart-alt-2 bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">View Grades</h5>
+                            <p class="card-text">Check your child's academic progress</p>
+                            <a href="#" class="btn btn-primary">View Grades</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">Attendance</h4>
-                                <p class="text-sm text-gray-500">Track attendance records</p>
+                
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-success">
+                                    <i class="bx bx-calendar-check bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">Attendance</h5>
+                            <p class="card-text">Track attendance records</p>
+                            <a href="#" class="btn btn-success">View Attendance</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg hover:shadow-md transition-shadow cursor-pointer">
-                    <div class="p-6">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h4 class="text-lg font-medium text-gray-900">Messages</h4>
-                                <p class="text-sm text-gray-500">Communicate with teachers</p>
+                
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="avatar mx-auto mb-3">
+                                <span class="avatar-initial rounded-circle bg-label-info">
+                                    <i class="bx bx-message-dots bx-md"></i>
+                                </span>
                             </div>
-                            <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                            <h5 class="card-title">Messages</h5>
+                            <p class="card-text">Communicate with teachers</p>
+                            <a href="#" class="btn btn-info">View Messages</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Main Content -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Upcoming Events & Recent Updates -->
+            <div class="row">
                 <!-- Upcoming Events -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Upcoming Events</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-start p-3 bg-blue-50 rounded-lg">
-                                <div class="flex-shrink-0 mt-1">
-                                    <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">Parent-Teacher Conference</p>
-                                    <p class="text-sm text-gray-500">Tomorrow at 3:00 PM</p>
-                                    <p class="text-xs text-gray-400">Room 205 with Ms. Johnson</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start p-3 bg-green-50 rounded-lg">
-                                <div class="flex-shrink-0 mt-1">
-                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">School Science Fair</p>
-                                    <p class="text-sm text-gray-500">Friday, Oct 15th</p>
-                                    <p class="text-xs text-gray-400">Gym Hall - 10:00 AM to 3:00 PM</p>
+                <div class="col-lg-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="card-title m-0">Upcoming Events</h5>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="eventsDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="eventsDropdown">
+                                    <a class="dropdown-item" href="javascript:void(0);">View All Events</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Calendar View</a>
                                 </div>
                             </div>
-                            <div class="flex items-start p-3 bg-purple-50 rounded-lg">
-                                <div class="flex-shrink-0 mt-1">
-                                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-point timeline-point-primary"></div>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header mb-1">
+                                            <h6 class="mb-0">Parent-Teacher Conference</h6>
+                                            <small class="text-muted">Tomorrow at 3:00 PM</small>
+                                        </div>
+                                        <p class="text-muted mb-0">Room 205 with Ms. Johnson</p>
+                                    </div>
                                 </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">Field Trip Permission</p>
-                                    <p class="text-sm text-gray-500">Due: Oct 20th</p>
-                                    <p class="text-xs text-gray-400">Natural History Museum visit</p>
+                                <div class="timeline-item">
+                                    <div class="timeline-point timeline-point-success"></div>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header mb-1">
+                                            <h6 class="mb-0">School Science Fair</h6>
+                                            <small class="text-muted">Friday, Oct 15th</small>
+                                        </div>
+                                        <p class="text-muted mb-0">Gym Hall - 10:00 AM to 3:00 PM</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-point timeline-point-warning"></div>
+                                    <div class="timeline-event">
+                                        <div class="timeline-header mb-1">
+                                            <h6 class="mb-0">Field Trip Permission</h6>
+                                            <small class="text-muted">Due: Oct 20th</small>
+                                        </div>
+                                        <p class="text-muted mb-0">Natural History Museum visit</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -153,56 +204,77 @@
                 </div>
 
                 <!-- Recent Updates -->
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Updates</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">Math Assignment Graded</p>
-                                    <p class="text-sm text-gray-500">Sarah received an A on her algebra homework</p>
-                                    <p class="text-xs text-gray-400">2 hours ago</p>
+                <div class="col-lg-6 col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="card-title m-0">Recent Updates</h5>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="updatesDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="updatesDropdown">
+                                    <a class="dropdown-item" href="javascript:void(0);">View All Updates</a>
+                                    <a class="dropdown-item" href="javascript:void(0);">Mark as Read</a>
                                 </div>
                             </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
-                                        </svg>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-success">
+                                            <i class="bx bx-check"></i>
+                                        </span>
                                     </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">Teacher Message</p>
-                                    <p class="text-sm text-gray-500">Ms. Johnson: "Great participation in class today!"</p>
-                                    <p class="text-xs text-gray-400">1 day ago</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                        </svg>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Math Assignment Graded</h6>
+                                            <small class="text-muted">Sarah received an A on her algebra homework</small>
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">2h ago</small>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="text-sm font-medium text-gray-900">Reminder</p>
-                                    <p class="text-sm text-gray-500">Library book is due tomorrow</p>
-                                    <p class="text-xs text-gray-400">2 days ago</p>
-                                </div>
-                            </div>
+                                </li>
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-primary">
+                                            <i class="bx bx-message"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Teacher Message</h6>
+                                            <small class="text-muted">Ms. Johnson: "Great participation in class today!"</small>
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">1d ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="d-flex mb-4 pb-1">
+                                    <div class="avatar flex-shrink-0 me-3">
+                                        <span class="avatar-initial rounded bg-label-warning">
+                                            <i class="bx bx-error"></i>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                        <div class="me-2">
+                                            <h6 class="mb-0">Reminder</h6>
+                                            <small class="text-muted">Library book is due tomorrow</small>
+                                        </div>
+                                        <div class="user-progress">
+                                            <small class="fw-semibold">2d ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- / Content -->
     </div>
-</x-app-layout>
+    <!-- Content wrapper -->
+</x-dashboard-layout>
