@@ -100,20 +100,40 @@
         </ul>
     </li>
 
-    <li class="menu-item {{ request()->routeIs('manager.classes*') ? 'active open' : '' }}">
+    <li class="menu-item {{ request()->routeIs('manager.classrooms*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-book-open"></i>
-            <div data-i18n="Classes">Classes</div>
+            <div data-i18n="Classrooms">Classrooms</div>
         </a>
         <ul class="menu-sub">
-            <li class="menu-item {{ request()->routeIs('manager.classes.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
-                    <div data-i18n="All Classes">All Classes</div>
+            <li class="menu-item {{ request()->routeIs('manager.classrooms.index') ? 'active' : '' }}">
+                <a href="{{ route('manager.classrooms.index') }}" class="menu-link">
+                    <div data-i18n="All Classrooms">All Classrooms</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('manager.classes.schedule') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
-                    <div data-i18n="Class Schedule">Class Schedule</div>
+            <li class="menu-item {{ request()->routeIs('manager.classrooms.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.classrooms.create') }}" class="menu-link">
+                    <div data-i18n="Add Classroom">Add Classroom</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <!-- Terms -->
+    <li class="menu-item {{ request()->routeIs('manager.terms*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-calendar-alt"></i>
+            <div data-i18n="Terms">Terms</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('manager.terms.index') ? 'active' : '' }}">
+                <a href="{{ route('manager.terms.index') }}" class="menu-link">
+                    <div data-i18n="All Terms">All Terms</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('manager.terms.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.terms.create') }}" class="menu-link">
+                    <div data-i18n="Add Term">Add Term</div>
                 </a>
             </li>
         </ul>
