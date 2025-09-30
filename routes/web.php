@@ -123,6 +123,49 @@ Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
         ->name('manager.teachers.bulk-action');
     Route::post('/manager/teachers/{teacher}/resend-welcome-email', [App\Http\Controllers\ManagerTeacherController::class, 'resendWelcomeEmail'])
         ->name('manager.teachers.resend-welcome-email');
+    
+    // Classroom Management Routes
+    Route::resource('manager/classrooms', App\Http\Controllers\ManagerClassroomController::class, [
+        'names' => [
+            'index' => 'manager.classrooms.index',
+            'create' => 'manager.classrooms.create',
+            'store' => 'manager.classrooms.store',
+            'show' => 'manager.classrooms.show',
+            'edit' => 'manager.classrooms.edit',
+            'update' => 'manager.classrooms.update',
+            'destroy' => 'manager.classrooms.destroy',
+        ]
+    ]);
+    
+    // Additional classroom management routes
+    Route::post('/manager/classrooms/{classroom}/assign-teacher', [App\Http\Controllers\ManagerClassroomController::class, 'assignTeacher'])
+        ->name('manager.classrooms.assign-teacher');
+    
+    // Term Management Routes
+    Route::resource('manager/terms', App\Http\Controllers\ManagerTermController::class, [
+        'names' => [
+            'index' => 'manager.terms.index',
+            'create' => 'manager.terms.create',
+            'store' => 'manager.terms.store',
+            'show' => 'manager.terms.show',
+            'edit' => 'manager.terms.edit',
+            'update' => 'manager.terms.update',
+            'destroy' => 'manager.terms.destroy',
+        ]
+    ]);
+    
+    // Subject Management Routes
+    Route::resource('manager/subjects', App\Http\Controllers\ManagerSubjectController::class, [
+        'names' => [
+            'index' => 'manager.subjects.index',
+            'create' => 'manager.subjects.create',
+            'store' => 'manager.subjects.store',
+            'show' => 'manager.subjects.show',
+            'edit' => 'manager.subjects.edit',
+            'update' => 'manager.subjects.update',
+            'destroy' => 'manager.subjects.destroy',
+        ]
+    ]);
 });
 
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
