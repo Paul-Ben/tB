@@ -139,6 +139,26 @@
         </ul>
     </li>
 
+    <!-- Subjects -->
+    <li class="menu-item {{ request()->routeIs('manager.subjects*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-book"></i>
+            <div data-i18n="Subjects">Subjects</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('manager.subjects.index') ? 'active' : '' }}">
+                <a href="{{ route('manager.subjects.index') }}" class="menu-link">
+                    <div data-i18n="All Subjects">All Subjects</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('manager.subjects.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.subjects.create') }}" class="menu-link">
+                    <div data-i18n="Add Subject">Add Subject</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <!-- Reports -->
     <li class="menu-item {{ request()->routeIs('manager.reports*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
