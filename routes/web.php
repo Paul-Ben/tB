@@ -153,6 +153,19 @@ Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
             'destroy' => 'manager.terms.destroy',
         ]
     ]);
+    
+    // Subject Management Routes
+    Route::resource('manager/subjects', App\Http\Controllers\ManagerSubjectController::class, [
+        'names' => [
+            'index' => 'manager.subjects.index',
+            'create' => 'manager.subjects.create',
+            'store' => 'manager.subjects.store',
+            'show' => 'manager.subjects.show',
+            'edit' => 'manager.subjects.edit',
+            'update' => 'manager.subjects.update',
+            'destroy' => 'manager.subjects.destroy',
+        ]
+    ]);
 });
 
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
