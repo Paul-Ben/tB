@@ -43,13 +43,13 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('manager.students.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.students.index') }}" class="menu-link">
                     <div data-i18n="All Students">All Students</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('manager.students.enrollment') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
-                    <div data-i18n="Enrollment">Enrollment</div>
+            <li class="menu-item {{ request()->routeIs('manager.students.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.students.create') }}" class="menu-link">
+                    <div data-i18n="Add Student">Add Student</div>
                 </a>
             </li>
         </ul>
@@ -63,13 +63,13 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('manager.guardians.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('manager.guardians.index') }}" class="menu-link">
                     <div data-i18n="All Guardians">All Guardians</div>
                 </a>
             </li>
-            <li class="menu-item {{ request()->routeIs('manager.guardians.communications') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
-                    <div data-i18n="Communications">Communications</div>
+            <li class="menu-item {{ request()->routeIs('manager.guardians.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.guardians.create') }}" class="menu-link">
+                    <div data-i18n="Add Guardian">Add Guardian</div>
                 </a>
             </li>
         </ul>

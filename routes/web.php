@@ -166,6 +166,32 @@ Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
             'destroy' => 'manager.subjects.destroy',
         ]
     ]);
+    
+    // Guardian Management Routes
+    Route::resource('manager/guardians', App\Http\Controllers\ManagerGuardianController::class, [
+        'names' => [
+            'index' => 'manager.guardians.index',
+            'create' => 'manager.guardians.create',
+            'store' => 'manager.guardians.store',
+            'show' => 'manager.guardians.show',
+            'edit' => 'manager.guardians.edit',
+            'update' => 'manager.guardians.update',
+            'destroy' => 'manager.guardians.destroy',
+        ]
+    ]);
+    
+    // Student Management Routes
+    Route::resource('manager/students', App\Http\Controllers\ManagerStudentController::class, [
+        'names' => [
+            'index' => 'manager.students.index',
+            'create' => 'manager.students.create',
+            'store' => 'manager.students.store',
+            'show' => 'manager.students.show',
+            'edit' => 'manager.students.edit',
+            'update' => 'manager.students.update',
+            'destroy' => 'manager.students.destroy',
+        ]
+    ]);
 });
 
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
