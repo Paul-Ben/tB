@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +25,16 @@ Route::get('/about-us', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact-us', [FrontendController::class, 'contact'])->name('contact');
 
 Route::get('/dashboard', function () {
-    $user = auth()->user();
-    $role = $user->getPrimaryRole();
-    
+    $userId = auth()->id();
+    $user = $userId ? User::find($userId) : null;
+    $role = $user?->getPrimaryRole();
+
     return match ($role) {
         'admin' => redirect()->route('admin.dashboard'),
         'manager' => redirect()->route('manager.dashboard'),
         'teacher' => redirect()->route('teacher.dashboard'),
         'guardian' => redirect()->route('guardian.dashboard'),
-        default => view('dashboard')
+        default => view('dashboard'),
     };
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -197,6 +199,12 @@ Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
 Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
     Route::get('/teacher/dashboard', [App\Http\Controllers\TeacherDashboardController::class, 'index'])
         ->name('teacher.dashboard');
+
+    // Teacher classes routes
+    Route::get('/teacher/classes', [App\Http\Controllers\TeacherClassesController::class, 'index'])
+        ->name('teacher.classes.index');
+    Route::get('/teacher/classes/{classroom}', [App\Http\Controllers\TeacherClassesController::class, 'show'])
+        ->name('teacher.classes.show');
 });
 
 Route::middleware(['auth', 'verified', 'role:guardian'])->group(function () {
