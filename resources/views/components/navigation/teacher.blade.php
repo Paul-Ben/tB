@@ -18,7 +18,7 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('teacher.classes.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('teacher.classes.index') }}" class="menu-link">
                     <div data-i18n="All Classes">All Classes</div>
                 </a>
             </li>
