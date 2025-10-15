@@ -195,7 +195,7 @@
                                 <option value="">Choose a teacher...</option>
                                 @foreach($availableTeachers as $teacher)
                                     <option value="{{ $teacher->id }}">
-                                        {{ $teacher->user->first_name }} {{ $teacher->user->last_name }}
+                                        {{ $teacher->user->name }}
                                         @if($teacher->user->email)
                                             ({{ $teacher->user->email }})
                                         @endif
