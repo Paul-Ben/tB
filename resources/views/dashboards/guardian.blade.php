@@ -150,6 +150,68 @@
             </div>
 
             <!-- Upcoming Events & Recent Updates -->
+            <!-- My Children Table -->
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5 class="card-title m-0">My Children</h5>
+                            <small class="text-muted">Total: {{ $children->total() }}</small>
+                        </div>
+                        <div class="card-body p-0">
+                            @if ($children->count())
+                                <div class="table-responsive">
+                                    <table class="table table-hover mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Student</th>
+                                                <th>Class</th>
+                                                <th>Gender</th>
+                                                <th>Student No.</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($children as $child)
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex align-items-center">
+                                                            @if ($child->image)
+                                                                <img src="{{ asset($child->image) }}" alt="{{ $child->full_name }}" class="rounded-circle me-2" width="36" height="36">
+                                                            @else
+                                                                <span class="avatar-initial rounded-circle bg-label-secondary me-2" style="width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;">
+                                                                    {{ strtoupper(substr($child->first_name, 0, 1)) }}
+                                                                </span>
+                                                            @endif
+                                                            <div>
+                                                                <div class="fw-semibold">{{ $child->full_name }}</div>
+                                                                <small class="text-muted">DOB: {{ optional($child->date_of_birth)->format('M j, Y') }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{ optional($child->classroom)->name ?? '—' }}</td>
+                                                    <td>{{ ucfirst($child->gender ?? '') }}</td>
+                                                    <td>{{ $child->std_number }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <div class="p-4 text-center text-muted">
+                                    You have no children linked to your account yet.
+                                </div>
+                            @endif
+                        </div>
+                        @if ($children->count())
+                            <div class="card-footer">
+                                {{ $children->links() }}
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Events & Recent Updates -->
             <div class="row">
                 <!-- Upcoming Events -->
                 <div class="col-lg-6 col-12 mb-4">
