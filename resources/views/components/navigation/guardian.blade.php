@@ -18,7 +18,7 @@
         </a>
         <ul class="menu-sub">
             <li class="menu-item {{ request()->routeIs('guardian.children.index') ? 'active' : '' }}">
-                <a href="#" class="menu-link">
+                <a href="{{ route('guardian.children.index') }}" class="menu-link">
                     <div data-i18n="All Children">All Children</div>
                 </a>
             </li>

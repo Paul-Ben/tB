@@ -210,6 +210,12 @@ Route::middleware(['auth', 'verified', 'role:teacher'])->group(function () {
 Route::middleware(['auth', 'verified', 'role:guardian'])->group(function () {
     Route::get('/guardian/dashboard', [App\Http\Controllers\GuardianDashboardController::class, 'index'])
         ->name('guardian.dashboard');
+
+    // Guardian Children routes
+    Route::get('/guardian/children', [App\Http\Controllers\GuardianChildrenController::class, 'index'])
+        ->name('guardian.children.index');
+    Route::get('/guardian/children/{student}', [App\Http\Controllers\GuardianChildrenController::class, 'show'])
+        ->name('guardian.children.show');
 });
 
 Route::middleware('auth')->group(function () {
