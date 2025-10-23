@@ -119,6 +119,26 @@
         </ul>
     </li>
 
+    <!-- Class Categories -->
+    <li class="menu-item {{ request()->routeIs('manager.class-categories*') ? 'active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-category"></i>
+            <div data-i18n="Class Categories">Class Categories</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item {{ request()->routeIs('manager.class-categories.index') ? 'active' : '' }}">
+                <a href="{{ route('manager.class-categories.index') }}" class="menu-link">
+                    <div data-i18n="All Categories">All Categories</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->routeIs('manager.class-categories.create') ? 'active' : '' }}">
+                <a href="{{ route('manager.class-categories.create') }}" class="menu-link">
+                    <div data-i18n="Add Category">Add Category</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
     <!-- Terms -->
     <li class="menu-item {{ request()->routeIs('manager.terms*') ? 'active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
