@@ -143,6 +143,19 @@ Route::middleware(['auth', 'verified', 'role:manager'])->group(function () {
     Route::post('/manager/classrooms/{classroom}/assign-teacher', [App\Http\Controllers\ManagerClassroomController::class, 'assignTeacher'])
         ->name('manager.classrooms.assign-teacher');
     
+    // Class Category Management Routes
+    Route::resource('manager/class-categories', App\Http\Controllers\ManagerClassCategoryController::class, [
+        'names' => [
+            'index' => 'manager.class-categories.index',
+            'create' => 'manager.class-categories.create',
+            'store' => 'manager.class-categories.store',
+            'show' => 'manager.class-categories.show',
+            'edit' => 'manager.class-categories.edit',
+            'update' => 'manager.class-categories.update',
+            'destroy' => 'manager.class-categories.destroy',
+        ]
+    ]);
+
     // Term Management Routes
     Route::resource('manager/terms', App\Http\Controllers\ManagerTermController::class, [
         'names' => [
